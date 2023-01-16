@@ -15,6 +15,7 @@ export class HomePage {
     clickPlz() {
         // click on button
         cy.contains('.button_wrapper', 'Geht klar').click()
+        cy.wait(2000)
     }
     verifyPlz(Plz) {
         // verify PIN is applied correctly
