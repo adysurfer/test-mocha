@@ -1,0 +1,20 @@
+{
+  "name": "test-task",
+  "version": "1.0.0",
+  "description": "Test using Cypress and Cucumber",
+  "main": "index.js",
+  "scripts": {
+    "cypress:runner": "cypress open --browser chrome",
+    "cypress:execution": "cypress run",
+    "cypress:execution-tags": "cypress run --env tags='@e2e and @high'"
+  },
+  "keywords": [
+    "cypress"
+  ],
+  "author": "cucumber",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^12.0.2",
+    "cypress-mochawesome-reporter": "^3.2.3"
+  }
+}
