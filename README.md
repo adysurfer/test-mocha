@@ -1,5 +1,5 @@
 # cypress-mocha-e2e-testing-Page Object Model
-
+clone repo using: `git clone https://github.com/adysurfer/test-mocha.git`
 ## Pre-requisites
 
 1. Node JS
