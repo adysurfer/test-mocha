@@ -1,6 +1,6 @@
-# cypress-mocha-e2e-testing
+# cypress-mocha-e2e-testing-Page Object Model
 
-- ## Pre-requisites
+## Pre-requisites
 
 1. Node JS
 
