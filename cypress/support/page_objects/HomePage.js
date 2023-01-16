@@ -3,6 +3,8 @@ export class HomePage {
         // intercept the network request
         // specifying an alias for the request
         cy.intercept('GET', 'https://www.flaschenpost.de/data/zipcodes.json').as('WaitForPlzCodes')
+        // wait for screen items(categories, etc.) to load
+        cy.intercept('POST', 'https://fpt.flaschenpost.de/sb-topic/screen-view').as('WaitForScreenToLoad')
         // visit flaschenpost
         cy.visit('https://www.flaschenpost.de/')
     }
@@ -15,7 +17,7 @@ export class HomePage {
     clickPlz() {
         // click on button
         cy.contains('.button_wrapper', 'Geht klar').click()
-        cy.wait(2000)
+        cy.wait('@WaitForScreenToLoad')
     }
     verifyPlz(Plz) {
         // verify PIN is applied correctly
@@ -24,7 +26,6 @@ export class HomePage {
     verifyOnHomePage() {
         // verify if user is on home page
         cy.get('.category_tiles').should('exist')
-        cy.wait(2000)
     }
     goToBasketPage() {
         // get category Tile randomly (Wasser, Weine or Bier)
@@ -38,6 +39,7 @@ export class HomePage {
                 cy.get('.simplebar-content').find('li')
                     .eq(0)
                     .click()
+                cy.wait(2000)
             }
         })
     }

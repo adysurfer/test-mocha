@@ -2,7 +2,7 @@ export class BasketPage {
     addProductToBasket() {
         // click on first product basket to add product
         cy.get('.fp_article_basket_add').eq(0).click()
-        cy.wait(3000)
+        cy.wait(2000)
     }
     verifyProductIsAdded() {
         // validate if product is added to the basket

@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "cypress:runner": "cypress open --browser chrome",
-    "cypress:execution": "cypress run",
-    "cypress:execution-tags": "cypress run --env tags='@e2e and @high'"
+    "cypress:execution": "cypress run"
   },
   "keywords": [
     "cypress"
