@@ -3,7 +3,6 @@ export class HomePage {
         // intercept the network request
         // specifying an alias for the request
         cy.intercept('GET', 'https://www.flaschenpost.de/data/zipcodes.json').as('WaitForPlzCodes')
-        // wait for screen items(categories, etc.) to load
         cy.intercept('POST', 'https://fpt.flaschenpost.de/sb-topic/screen-view').as('WaitForScreenToLoad')
         // visit flaschenpost
         cy.visit('https://www.flaschenpost.de/')
@@ -11,6 +10,7 @@ export class HomePage {
     enterPlz(Plz) {
         // wait for the request to finish by specifying the alias for our intercepted request
         cy.wait('@WaitForPlzCodes')
+        // wait for screen items(categories, etc.) to load
         cy.wait('@WaitForScreenToLoad')
         // enter zip code
         cy.get('.zipcode_input_component input').type(Plz)
@@ -18,6 +18,7 @@ export class HomePage {
     clickPlz() {
         // click on button
         cy.contains('.button_wrapper', 'Geht klar').click()
+        // wait for screen items(categories, etc.) to load
         cy.wait('@WaitForScreenToLoad')
     }
     verifyPlz(Plz) {
