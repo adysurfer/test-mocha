@@ -11,12 +11,13 @@ export class HomePage {
         cy.wait('@WaitForPlzCodes')
         // enter zip code
         cy.get('.zipcode_input_component input').type(Plz)
+        cy.wait(500)
     }
     clickPlz() {
         // click on button
         cy.contains('.button_wrapper', 'Geht klar').click()
         // wait for consent data to load
-        cy.wait(2000)
+        cy.wait(1000)
     }
     verifyPlz(Plz) {
         // verify PIN is applied correctly
