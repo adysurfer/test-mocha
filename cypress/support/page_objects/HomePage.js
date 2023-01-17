@@ -11,6 +11,7 @@ export class HomePage {
     enterPlz(Plz) {
         // wait for the request to finish by specifying the alias for our intercepted request
         cy.wait('@WaitForPlzCodes')
+        cy.wait('@WaitForScreenToLoad')
         // enter zip code
         cy.get('.zipcode_input_component input').type(Plz)
     }
