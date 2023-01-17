@@ -3,7 +3,6 @@ export class HomePage {
         // intercept the network request
         // specifying an alias for the request
         cy.intercept('GET', 'https://www.flaschenpost.de/data/zipcodes.json').as('WaitForPlzCodes')
-        cy.intercept('POST', 'https://graphql.usercentrics.eu/graphql').as('WaitForConsentDataToLoad')
         // visit flaschenpost
         cy.visit('https://www.flaschenpost.de/')
     }
@@ -17,7 +16,7 @@ export class HomePage {
         // click on button
         cy.contains('.button_wrapper', 'Geht klar').click()
         // wait for consent data to load
-        cy.wait('@WaitForConsentDataToLoad')
+        cy.wait(2000)
     }
     verifyPlz(Plz) {
         // verify PIN is applied correctly
