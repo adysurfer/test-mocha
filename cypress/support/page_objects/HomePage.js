@@ -3,23 +3,21 @@ export class HomePage {
         // intercept the network request
         // specifying an alias for the request
         cy.intercept('GET', 'https://www.flaschenpost.de/data/zipcodes.json').as('WaitForPlzCodes')
-        cy.intercept('POST', 'https://fpt.flaschenpost.de/sb-topic/screen-view').as('WaitForScreenToLoad')
+        cy.intercept('POST', 'https://graphql.usercentrics.eu/graphql').as('WaitForConsentDataToLoad')
         // visit flaschenpost
         cy.visit('https://www.flaschenpost.de/')
-    }
-    enterPlz(Plz) {
+        // wait for consent data to load
+        cy.wait('@WaitForConsentDataToLoad')
         // wait for the request to finish by specifying the alias for our intercepted request
         cy.wait('@WaitForPlzCodes')
-        // wait for screen items(categories, etc.) to load
-        cy.wait('@WaitForScreenToLoad')
+    }
+    enterPlz(Plz) {
         // enter zip code
         cy.get('.zipcode_input_component input').type(Plz)
     }
     clickPlz() {
         // click on button
         cy.contains('.button_wrapper', 'Geht klar').click()
-        // wait for screen items(categories, etc.) to load
-        cy.wait('@WaitForScreenToLoad')
     }
     verifyPlz(Plz) {
         // verify PIN is applied correctly
