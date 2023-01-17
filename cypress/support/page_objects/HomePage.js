@@ -6,18 +6,18 @@ export class HomePage {
         cy.intercept('POST', 'https://graphql.usercentrics.eu/graphql').as('WaitForConsentDataToLoad')
         // visit flaschenpost
         cy.visit('https://www.flaschenpost.de/')
-        // wait for consent data to load
-        cy.wait('@WaitForConsentDataToLoad')
-        // wait for the request to finish by specifying the alias for our intercepted request
-        cy.wait('@WaitForPlzCodes')
     }
     enterPlz(Plz) {
+        // wait for the request to finish by specifying the alias for our intercepted request
+        cy.wait('@WaitForPlzCodes')
         // enter zip code
         cy.get('.zipcode_input_component input').type(Plz)
     }
     clickPlz() {
         // click on button
         cy.contains('.button_wrapper', 'Geht klar').click()
+        // wait for consent data to load
+        cy.wait('@WaitForConsentDataToLoad')
     }
     verifyPlz(Plz) {
         // verify PIN is applied correctly
